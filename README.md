@@ -77,7 +77,7 @@ VITE_FIREBASE_PROJECT_ID=your_project_id
 VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=http://localhost:5001
 ```
 
 ### Run the Project Locally
@@ -89,7 +89,7 @@ cd backend
 npm run dev
 ```
 
-The server will run on `http://localhost:5000`
+The server will run on `http://localhost:5001`
 
 #### Terminal 2: Start the Frontend
 

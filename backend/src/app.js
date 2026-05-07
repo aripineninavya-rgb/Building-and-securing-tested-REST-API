@@ -15,6 +15,7 @@ const corsOptions = {
 };
 
 // Middleware - CORS must come before routes
+console.log('Applying CORS middleware with options:', corsOptions);
 app.use(cors(corsOptions));
 app.use(express.json());
 
