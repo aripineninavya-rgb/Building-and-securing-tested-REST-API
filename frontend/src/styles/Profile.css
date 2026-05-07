@@ -1,0 +1,29 @@
+.profile {
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+}
+
+.profile h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.profile.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.profile-info {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  border-left: 4px solid #007bff;
+}
+
+.profile-info p {
+  margin: 0.5rem 0;
+  color: #555;
+}
