@@ -43,9 +43,6 @@ describe('Frontend Unit Tests', () => {
           <AuthButtons />
         </AuthProvider>
       );
-      
-      // Note: Loading state is quickly resolved in mocked tests
-      // Check that either loading or login button is shown
       const loadingText = screen.queryByText(/loading/i);
       const loginButton = screen.queryByRole('button', { name: /login with google/i });
       
@@ -101,7 +98,7 @@ describe('Frontend Unit Tests', () => {
     });
 
     it('shows form title', () => {
-      // Note: In real app, you'd need a test user logged in
+
       render(
         <AuthProvider>
           <AddGymForm />
