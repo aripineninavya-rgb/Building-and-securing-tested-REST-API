@@ -2,7 +2,6 @@ import React from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { AuthButtons } from './components/AuthButtons';
 import { GymList } from './components/GymList';
-import { AddGymForm } from './components/AddGymForm';
 import { Profile } from './components/Profile';
 import './App.css';
 
@@ -22,14 +21,9 @@ function AppContent() {
         </section>
 
         {user && (
-          <>
-            <section>
-              <AddGymForm />
-            </section>
-            <section>
-              <Profile />
-            </section>
-          </>
+          <section>
+            <Profile />
+          </section>
         )}
       </main>
     </div>
