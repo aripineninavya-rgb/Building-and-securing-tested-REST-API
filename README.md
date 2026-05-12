@@ -175,7 +175,7 @@ We chose **Firebase Authentication** because:
 5. **Cross-Platform**: Firebase works seamlessly across web, mobile, and backend
 
 ### How Authentication is Implemented
-§
+
 #### Frontend (`src/context/AuthContext.jsx`)
 
 - **Firebase Initialization**: Sets up Firebase with configuration from environment variables
