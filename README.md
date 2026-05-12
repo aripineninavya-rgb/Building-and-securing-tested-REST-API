@@ -57,7 +57,7 @@ Then edit `backend/.env`:
 FIREBASE_PROJECT_ID=your_project_id
 FIREBASE_PRIVATE_KEY=your_private_key
 FIREBASE_CLIENT_EMAIL=your_client_email
-PORT=5000
+PORT=5001
 NODE_ENV=development
 FRONTEND_URL=http://localhost:5173
 ```
@@ -102,6 +102,24 @@ The frontend will run on `http://localhost:5173`
 
 ## Testing
 
+### Backend Test Structure
+
+The backend uses **Vitest** with **Supertest** for integration testing and includes mocking of the Firebase Admin SDK:
+
+#### Mock Files (`backend/__mocks__/`)
+
+The `__mocks__/` directory contains mock implementations of external dependencies:
+
+- **`firebase-admin.js`**: Mocks the Firebase Admin SDK to avoid requiring real Firebase credentials during testing
+  - Provides mock implementations of `auth()`, `initializeApp()`, and credential methods
+  - Allows tests to mock token verification without making real Firebase API calls
+  - Tests can control token validation behavior using `vi.fn()` and `.mockResolvedValue()` / `.mockRejectedValue()`
+
+**Why Mocking Firebase?**
+- Real Firebase requires valid credentials and makes external API calls (slow tests)
+- Mocking allows tests to run in isolation and control all scenarios (valid tokens, expired tokens, invalid tokens)
+- Makes tests deterministic and doesn't rely on external service availability
+
 ### Run Tests Locally
 
 #### Backend Integration Tests
@@ -111,12 +129,6 @@ cd backend
 npm test
 ```
 
-This runs all integration tests using Vitest and validates:
-- Public routes return correct data
-- Protected routes return 401 without authentication
-- Protected routes work with valid tokens
-- Error handling for missing/invalid data
-
 #### Frontend Unit Tests
 
 ```bash
@@ -124,16 +136,12 @@ cd frontend
 npm test
 ```
 
-This runs unit tests for React components using Vitest + React Testing Library, validating:
-- Login/logout button visibility
-- Protected content visibility based on auth state
-- Component rendering and error states
 
 ## GitHub Actions Pipeline
 
 The project includes a GitHub Actions workflow (`.github/workflows/test.yml`) that:
 
-1. **Triggers on every push and pull request to main** - Ensures all code changes are tested
+1. **Triggers on every push and pull request to main** -  all code changes are tested
 2. **Installs dependencies** for both backend and frontend
 3. **Runs all tests** - Both integration and unit tests
 4. **Uses GitHub Secrets** for sensitive Firebase credentials
@@ -327,6 +335,8 @@ if (!name || !location) {
 .
 ├── .github/workflows/test.yml
 ├── backend/
+│   ├── __mocks__/
+│   │   └── firebase-admin.js
 │   ├── src/
 │   │   ├── __tests__/integration.test.js
 │   │   ├── middleware/auth.js

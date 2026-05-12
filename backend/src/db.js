@@ -3,21 +3,21 @@ let gyms = [
   {
     id: '1',
     name: 'FitnessFirst Downtown',
-    location: '123 Main St',
+    location: 'stockholm',
     rating: 4.5,
     reviews: []
   },
   {
     id: '2',
     name: 'CrossFit Elite',
-    location: '456 Oak Ave',
+    location: 'stockholm',
     rating: 4.8,
     reviews: []
   },
   {
     id: '3',
     name: 'Yoga Zen',
-    location: '789 Peace Blvd',
+    location: 'stockholm',
     rating: 4.2,
     reviews: []
   }
@@ -62,21 +62,21 @@ const db = {
       {
         id: '1',
         name: 'FitnessFirst Downtown',
-        location: '123 Main St',
+        location: 'stockholm',
         rating: 4.5,
         reviews: []
       },
       {
         id: '2',
         name: 'CrossFit Elite',
-        location: '456 Oak Ave',
+        location: 'stockholm',
         rating: 4.8,
         reviews: []
       },
       {
         id: '3',
         name: 'Yoga Zen',
-        location: '789 Peace Blvd',
+        location: 'stockholm',
         rating: 4.2,
         reviews: []
       }
