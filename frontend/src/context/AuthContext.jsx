@@ -31,10 +31,8 @@ export const AuthProvider = ({ children }) => {
       if (currentUser) {
         const idToken = await currentUser.getIdToken();
         setToken(idToken);
-        localStorage.setItem('authToken', idToken);
       } else {
         setToken(null);
-        localStorage.removeItem('authToken');
       }
       setLoading(false);
     });
@@ -47,7 +45,6 @@ export const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, googleProvider);
       const idToken = await result.user.getIdToken();
       setToken(idToken);
-      localStorage.setItem('authToken', idToken);
       return result.user;
     } catch (error) {
       console.error('Login error:', error);
@@ -59,7 +56,6 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setToken(null);
-      localStorage.removeItem('authToken');
     } catch (error) {
       console.error('Logout error:', error);
       throw error;

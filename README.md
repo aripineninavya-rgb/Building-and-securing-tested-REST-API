@@ -181,8 +181,8 @@ We chose **Firebase Authentication** because:
 - **Firebase Initialization**: Sets up Firebase with configuration from environment variables
 - **Auth Context**: Provides user state and authentication methods globally
 - **Login**: Uses `signInWithPopup` with Google Provider
-- **Token Management**: Automatically gets ID token after login and stores it in localStorage
-- **Logout**: Clears token and user state
+- **Token Management**: Automatically gets ID token after login
+- **Logout**: Clears user state
 
 #### Backend (`src/middleware/auth.js`)
 
@@ -254,13 +254,16 @@ fetch(`${API_URL}/gyms`, {
 })
 ```
 
-### 5. **Token Storage Approach**
+### 5. **Tokens Are NOT Stored in localStorage**
 
-**What**: Firebase tokens are stored in localStorage after login.
+**What**: Firebase authentication tokens are stored only in React state and are retrieved directly from Firebase Authentication when needed.
 
-**Why**: While localStorage is vulnerable to XSS, Firebase tokens have a short expiration (1 hour) and represent temporary access. This is standard for SPAs and uses the secure bearer token pattern.
+**Why**: Storing tokens in localStorage increases the risk of token theft through XSS (Cross-Site Scripting) attacks because JavaScript running in the browser can access localStorage values. Keeping tokens only in memory reduces this risk.
 
-**Production Alternative**: Use HttpOnly cookies for even better security, but this requires backend session management.
+**How**:
+- Tokens are managed using React state
+- Tokens are refreshed directly through Firebase Authentication
+- No authentication tokens are persisted in browser localStorage
 
 ### 6. **Bearer Token in Authorization Header**
 
@@ -291,7 +294,7 @@ if (!name || !location) {
 
 **What**: The API uses an in-memory array for storing gyms and reviews.
 
-**Why**: For this educational assignment, an in-memory database is sufficient and keeps focus on testing and security, not database design.
+**Why**: For this assignment, an in-memory database is sufficient and keeps focus on testing and security, not database design.
 
 ## Reflections
 
@@ -322,10 +325,7 @@ if (!name || !location) {
 1. **Database**: Use MongoDB with encryption at rest for production
 2. **Rate Limiting**: Add middleware to prevent brute force attacks
 3. **Logging**: Implement structured logging to audit authentication
-4. **HttpOnly Cookies**: Store tokens in HttpOnly cookies instead of localStorage
-5. **API Documentation**: Add Swagger/OpenAPI documentation
-6. **Refresh Tokens**: Implement refresh token rotation for longer sessions
-7. **Load Testing**: Test performance under concurrent user loads
+4. **Refresh Tokens**: Implement refresh token rotation for longer sessions
 
 ---
 
