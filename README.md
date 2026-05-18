@@ -359,3 +359,14 @@ if (!name || !location) {
 │   └── package.json
 └── README.md
 ```
+
+### Screenshots 
+
+<img width="1458" height="797" alt="github actions" src="https://github.com/user-attachments/assets/df4b38ec-4294-4a3b-a6da-dd5a5d50defc" />
+
+
+<img width="1206" height="752" alt="frontend test" src="https://github.com/user-attachments/assets/d0c0fd06-88e4-4437-9ed5-79ce9b620b38" />
+
+
+
+<img width="1224" height="779" alt="backend test" src="https://github.com/user-attachments/assets/a632008b-cbd1-4221-815f-949cbf79d871" />
